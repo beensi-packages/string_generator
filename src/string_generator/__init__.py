@@ -12,5 +12,8 @@ def hashed_password(value: str):
 
 
 def hashed_data(value: dict):
-    value = json.dumps(value)
-    return hashlib.sha512(value.encode()).hexdigest()
+    tmp = {}
+    for k, v in value.items():
+        tmp[k] = str(v)
+    tmp = json.dumps(tmp)
+    return hashlib.sha512(tmp.encode()).hexdigest()
